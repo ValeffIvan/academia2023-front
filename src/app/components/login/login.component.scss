@@ -1,0 +1,121 @@
+@import "colors.scss";
+
+h1 {
+    margin-top: 0px;
+}
+
+#login, #register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5em;
+    background-color: white;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    min-width: 250px;
+}
+
+#login {
+    border-color: $color-low-blue;
+}
+
+#register {
+    border-color: $color-low-purple;
+}
+
+#loginBtn, #registerBtn {
+    width: 7em;
+    padding: 0.5em;
+    margin-top: 2em;
+    font-weight: 500;
+    font-family: 'Roboto';
+}
+
+#loginBtn {
+    border: 1px solid $color-middle-blue;
+    background-color: $color-low-blue;
+}
+
+#loginBtn:hover{
+    background-color: $color-middle-blue;
+    cursor: pointer;
+}
+
+#registerBtn {
+    border: 1px solid $color-middle-purple;
+    background-color: $color-low-purple;
+    color: white;
+}
+
+#registerBtn:hover {
+    background-color: $color-middle-purple;
+    cursor: pointer;
+}
+
+#loginBtn[disabled], #registerBtn[disabled] {
+    background-color: $color-disabled;
+    border-color: $color-disabled;
+    color: $color-disabled-text;
+    cursor: default;
+}
+
+.createAccount {
+    font-size: 9px;
+    margin-top: 2em;
+    align-self: flex-end;
+}
+
+.createAccount:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > .inputContainer:nth-child(2) {
+        margin-top: 1em;
+    }
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    
+    > label {
+        margin-bottom: 5px;
+        font-size: 11px;
+    }
+}
+
+.select {
+    margin-top: 10px;
+    width: 55%;
+}
+
+
+.notificationsContainer {
+    margin-top: 1em;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#failedLogin, #alreadyExists, #registrationOk {
+    font-weight: bold;
+    font-size: 11px;
+    position: absolute ;
+}
+
+#registrationOk {
+    color: $color-success;
+}
+
+#failedLogin, #alreadyExists {
+    color: $color-error;
+}
+

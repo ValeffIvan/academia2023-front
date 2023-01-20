@@ -1,0 +1,17 @@
+@import "colors.scss";
+
+#logoutBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: $color-low-blue;
+    border: 1px solid $color-middle-blue;
+    font-weight: 500;
+    font-family: 'Roboto';
+}
+
+#logoutBtn:hover {
+    background-color: $color-middle-blue;
+    cursor: pointer;
+}
