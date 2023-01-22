@@ -9,6 +9,12 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MensajeComponent } from './components/mensaje/mensaje.component';
+import { ComercialComponent } from './components/comercial/comercial.component';
+import { VendedorComponent } from './components/vendedor/vendedor.component';
+import { ListarReservasComponent } from './components/listar-reservas-comercial/listar-reservas.component';
+import { ReporteReservasComponent } from './components/reporte-reservas/reporte-reservas.component';
+import { ListarProductosComponent } from './components/listar-productos/listar-productos.component';
+import { ListarReservasVendedorComponent } from './components/listar-reservas-vendedor/listar-reservas-vendedor.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +22,13 @@ import { MensajeComponent } from './components/mensaje/mensaje.component';
     LoginComponent,
     InicioComponent,
     PageNotFoundComponent,
-    MensajeComponent
+    MensajeComponent,
+    ComercialComponent,
+    VendedorComponent,
+    ListarReservasComponent,
+    ReporteReservasComponent,
+    ListarProductosComponent,
+    ListarReservasVendedorComponent
   ],
   imports: [
     BrowserModule,
