@@ -11,24 +11,38 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MensajeComponent } from './components/mensaje/mensaje.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ListarProductosVendedorComponent } from './components/listar-productos-vendedor/listar-productos-vendedor.component';
+import { ComercialComponent } from './components/comercial/comercial.component';
+
+import {MatTabsModule} from '@angular/material/tabs';
+import { ListarReservasComercialComponent } from "./components/listar-reservas-comercial/listar-reservas-comercial.component";
+import { ReporteReservasComponent } from './components/reporte-reservas/reporte-reservas.component';
+import { VendedorComponent } from './components/vendedor/vendedor.component';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    InicioComponent,
-    PageNotFoundComponent,
-    MensajeComponent,
-  ],
-  imports: [
-    ReactiveFormsModule,
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    FontAwesomeModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        InicioComponent,
+        PageNotFoundComponent,
+        MensajeComponent,
+        ListarProductosVendedorComponent,
+        ComercialComponent,
+        ListarReservasComercialComponent,
+        ReporteReservasComponent,
+        VendedorComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        ReactiveFormsModule,
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        FontAwesomeModule,
+        MatTabsModule,
+    ]
 })
 export class AppModule { }
