@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -8,6 +8,8 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
+
+  @Input() rol: string | undefined;
 
   constructor(private _loginService: LoginService){}
 

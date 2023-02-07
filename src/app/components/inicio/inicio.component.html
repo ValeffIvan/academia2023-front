@@ -1,3 +1,6 @@
-<app-mensaje tipo="info" title="🎉 Login exitoso 🎉" subTitle="💪 ¡Happy coding! 🖥️"></app-mensaje>
-
 <button id="logoutBtn" (click)="logout()">Cerrar sesión</button>
+
+<!-- <div [ngSwitch]="rol">      *ngSwitch="rol==='comercial'"-->
+    <app-comercial ></app-comercial>
+    <app-vendedor ></app-vendedor>
+<!-- </div>   *ngSwitch="rol==='vendedor'"-->
