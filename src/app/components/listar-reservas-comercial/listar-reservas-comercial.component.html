@@ -5,20 +5,20 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col">Cliente</th>
-        <th scope="col">Producto</th>
+        <th scope="col">ID vendedor</th>
         <th scope="col">Estado</th>
     </tr>
   </thead>
   <tbody>
-<!--  <tr *ngFor="let shipper of shipperslist; let i = index">-->
-    <th scope="row">a</th>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-   <!-- </tr>-->
-        <button type="button" class="btn btn-danger" id="botoneliminar">Aprobar</button>
-        <button type="button" class="btn btn-danger" id="botoneliminar">Rechazar</button>
-        <button type="button" class="btn btn-danger" id="botoneliminar">Eliminar</button>
+      <tr *ngfor="let reservas of reservasList; let i = index">
+        <th>{{reservas.idReservas}}</th>
+        <th>{{reservas.cliente}}</th>
+        <th>{{reservas.idVendedor}}</th>
+        <th>{{reservas.estado}}</th>
+        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Check</mat-icon></button></th>
+        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Close</mat-icon></button></th>
+        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Delete</mat-icon></button></th>
+      </tr>
   </tbody>
 </table>
 <br>

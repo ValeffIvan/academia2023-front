@@ -18,6 +18,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { ListarReservasComercialComponent } from "./components/listar-reservas-comercial/listar-reservas-comercial.component";
 import { ReporteReservasComponent } from './components/reporte-reservas/reporte-reservas.component';
 import { VendedorComponent } from './components/vendedor/vendedor.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { VendedorComponent } from './components/vendedor/vendedor.component';
         BrowserAnimationsModule,
         FontAwesomeModule,
         MatTabsModule,
+        MatIconModule,
     ]
 })
 export class AppModule { }
