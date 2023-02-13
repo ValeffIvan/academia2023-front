@@ -10,12 +10,12 @@ import { Reservas } from '../models/reservas';
 })
 export class ReservasService {
 
-  baseUrl:string = environment.apiUrl+'Reserva'
+  baseUrl:string = environment.apiUrl+'/Reserva'
 
   constructor(private http:HttpClient) { }
 
-  getProducto(): Observable<Array<Reservas>> {
-    return this.http.get<Array<Reservas>>(this.baseUrl+'/GetReservas')
+  getReservas(): Observable<Array<Reservas>> {
+    return this.http.get<Reservas[]>(this.baseUrl+'/GetReservas')
   }
 
   createReservas(Reserva: {idReservas: number, cliente: string, idVendedor: string, estado: number}){

@@ -1,25 +1,40 @@
-<br>
-<br>
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Cliente</th>
-        <th scope="col">ID vendedor</th>
-        <th scope="col">Estado</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr *ngfor="let reservas of reservasList; let i = index">
-        <th>{{reservas.idReservas}}</th>
-        <th>{{reservas.cliente}}</th>
-        <th>{{reservas.idVendedor}}</th>
-        <th>{{reservas.estado}}</th>
-        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Check</mat-icon></button></th>
-        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Close</mat-icon></button></th>
-        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Delete</mat-icon></button></th>
-      </tr>
-  </tbody>
+<body>
+<mat-form-field appearance="fill">
+  <mat-label>Cliente </mat-label>
+  <mat-select>
+    <mat-option *ngFor="let cliente of clientesList" [value]="cliente" (click)="changeclient" #clienteseleccionado>
+      {{cliente}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<table mat-table [dataSource]="reservasList" class="mat-elevation-z8">
+  # Column 
+  <ng-container matColumnDef="#">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element"> {{element.idReservas}} </td>
+  </ng-container>
+
+  Cliente Column 
+  <ng-container matColumnDef="Cliente">
+    <th mat-header-cell *matHeaderCellDef> cliente </th>
+    <td mat-cell *matCellDef="let element"> {{element.cliente}} </td>
+  </ng-container>
+
+ ID vendedor Column 
+  <ng-container matColumnDef="ID vendedor">
+    <th mat-header-cell *matHeaderCellDef> ID vendedor </th>
+    <td mat-cell *matCellDef="let element"> {{element.idVendedor}} </td>
+  </ng-container>
+
+  Estado Column 
+  <ng-container matColumnDef="Estado">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<br>
-<br>
+  
+</body>

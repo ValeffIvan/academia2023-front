@@ -24,7 +24,9 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@types/lodash": "^4.14.191",
+    "bootstrap": "^5.2.3",
     "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
