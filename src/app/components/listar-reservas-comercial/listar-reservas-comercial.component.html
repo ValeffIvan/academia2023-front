@@ -1,14 +1,16 @@
 <body>
+  <br>
+  <br>
 <mat-form-field appearance="fill">
   <mat-label>Cliente </mat-label>
-  <mat-select>
-    <mat-option *ngFor="let cliente of clientesList" [value]="cliente" (click)="changeclient" #clienteseleccionado>
+  <mat-select (selectionChange)="selectedValue($event)">
+    <mat-option *ngFor="let cliente of clientesList" [value]="cliente" >
       {{cliente}}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
-<table mat-table [dataSource]="reservasList" class="mat-elevation-z8">
+<table mat-table [dataSource]="reservasList"  class="mat-elevation-z8" >
   # Column 
   <ng-container matColumnDef="#">
     <th mat-header-cell *matHeaderCellDef> # </th>
@@ -33,8 +35,28 @@
     <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
   </ng-container>
 
+  Aceptar Column 
+  <ng-container matColumnDef="aceptar">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element">  <button type="button" class="btn btn-danger" id="botoneliminar" (click)="aceptarReserva"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Check</mat-icon></button></td>
+  </ng-container>
+
+  Negar Column 
+  <ng-container matColumnDef="negar">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element">  <button type="button" class="btn btn-danger" id="botonClose"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Close</mat-icon></button></td>
+  </ng-container>
+
+  Eliminar Column 
+  <ng-container matColumnDef="eliminar">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element">  <button type="button" class="btn btn-danger" id="botonDelete"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Delete</mat-icon></button></td>
+  </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  
 </table>
   
 </body>

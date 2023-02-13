@@ -1,4 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
+import { MatTable } from '@angular/material/table';
 import { Reservas } from 'src/app/models/reservas';
 import { ReservasService } from 'src/app/services/reservas.service';
 
@@ -11,31 +13,49 @@ import { ReservasService } from 'src/app/services/reservas.service';
 export class ListarReservasComercialComponent {
 
   reservasList: Reservas[]=[];
-  displayedColumns: string[] = ['#', 'Cliente', 'ID vendedor', 'Estado'];
+  displayedColumns: string[] = ['#', 'Cliente', 'ID vendedor', 'Estado', 'aceptar', 'negar', 'eliminar'];
   reservasListAux:Reservas[]=[];
   clientesList:string []= [];
-  @ViewChild('clienteseleccionado') clienteseleccionado!: string;
+  @ViewChild(MatTable) table!: MatTable<any>;
   
   constructor (private service : ReservasService){
 
   }
   ngOnInit(){
-    this.service.getReservas().subscribe(
-      data => {
-        this.reservasListAux = data
-      }
-    )
-
-    this.reservasListAux.forEach(item => {
-      if (!this.clientesList.includes(item.cliente))
-      {this.clientesList.push(item.cliente)}
-    })
+    this.getReserva();
   }
 
-  changeclient(){
-    this.reservasListAux.forEach(item => {
-      if (item.cliente==this.clienteseleccionado)
-        this.reservasList.push(item)
-    } )
+    getReserva():void{
+     this.service.getReservas().subscribe(
+        (data:Reservas[]) => {
+          this.reservasListAux = data; this.cargarClientes();
+       }
+     )
+   }  
+
+   cargarClientes():void {
+    for (let x of this.reservasListAux)
+    {
+      if (!this.clientesList.includes(x.cliente))
+      {this.clientesList.push(x.cliente)}
+    }
+  }
+
+  selectedValue(event: MatSelectChange) {
+    this.reservasList =[];
+    for (let x of this.reservasListAux) {
+      if (x.cliente==event.value){
+        this.reservasList.push(x);
+      }
+    }
+    this.updateTable();
+  }
+
+  updateTable():void{
+    this.table.renderRows();
+  }
+
+  aceptarReserva(){
+
   }
 }
