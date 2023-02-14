@@ -23,6 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import { FormProductosComponent } from './components/form-productos/form-productos.component';
 
 
 
@@ -37,7 +38,8 @@ import {MatInputModule} from '@angular/material/input';
         ComercialComponent,
         ListarReservasComercialComponent,
         ReporteReservasComponent,
-        VendedorComponent
+        VendedorComponent,
+        FormProductosComponent
     ],
     imports: [
         HttpClientModule,
