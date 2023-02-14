@@ -9,31 +9,30 @@ import { environment } from 'src/environments/enviroment';
 })
 export class ProductosService {
 
-  baseUrl:string = environment.apiUrl+'/Producto'
+  baseUrl = environment.apiUrl+'/Producto'
 
   constructor(private http:HttpClient) { }
 
   getProducto(): Observable<Array<Producto>> {
-    return this.http.get<Array<Producto>>(this.baseUrl+'/GetProducts')
+    return this.http.get<Array<Producto>>(this.baseUrl+'/GetProducts') as Observable<Producto[]>
   }
 
-  createProducts(Product: {idProducto: number, codigo: number, barrio: string, precio: number, enlaceImagen:string, estado:string}){
-    this.http.post(this.baseUrl='/PostProducts',Product).subscribe((res)=>{
-      console.log(res);
+  createProducts(Product: Producto) {
+    return this.http.post('https://localhost:7194/api/Producto/PostProducts',Product).subscribe(res => {
+      console.log(Product);
     })
+    
   }
 
   updateProduct (Product:Producto)
-  {
-    this.http.put(this.baseUrl+'PutProducts',Product).subscribe(data=>{
-      console.log(data);
-    })
+  {  
+    this.http.put(this.baseUrl+'PutProducts',Product)
   }
 
   deleteProduct(id :number)
   {
-    this.http.delete(this.baseUrl+'/DeleteProducts'+id).subscribe(data=>{
-      console.log(data);
-    });
+    this.http.delete(this.baseUrl+'/DeleteProducts'+id).subscribe(res=>{
+      console.log(res);
+    })
   }
 }

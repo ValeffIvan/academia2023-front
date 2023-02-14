@@ -11,6 +11,7 @@
 </mat-form-field>
 
 <table mat-table [dataSource]="reservasList"  class="mat-elevation-z8" >
+ 
   # Column 
   <ng-container matColumnDef="#">
     <th mat-header-cell *matHeaderCellDef> # </th>
@@ -38,7 +39,7 @@
   Aceptar Column 
   <ng-container matColumnDef="aceptar">
     <th mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let element">  <button type="button" class="btn btn-danger" id="botoneliminar" (click)="aceptarReserva"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Check</mat-icon></button></td>
+    <td mat-cell *matCellDef="let element">  <button type="button" class="btn btn-danger" id="botoneliminar" ><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Check</mat-icon></button></td>
   </ng-container>
 
   Negar Column 

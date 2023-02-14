@@ -1,27 +1,117 @@
-<br>
-<br>
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">ID</th>
-        <th scope="col">Producto</th>
-        <th scope="col">enlaceImagen</th>
-        <th scope="col">Cliente</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr *ngfor="let Producto of productList; let i = index">
-        <th>{{Producto.idProducto}}</th>
-        <th>{{Producto.codigo}}</th>
-        <th>{{Producto.precio}}</th>
-        <th>{{Producto.enlaceImagen}}</th>
-        <th>{{Producto.estado}}</th>
-        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Check</mat-icon></button></th>
-        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Close</mat-icon></button></th>
-        <th><button type="button" class="btn btn-danger" id="botoneliminar"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">Delete</mat-icon></button></th>
-      </tr>
-  </tbody>
+<body>
+  <br>
+  <ng-container *ngIf="create==false; else crearProducto">
+<table mat-table [dataSource]="dataSource"  class="mat-elevation-z8" >
+
+  # Column 
+  <ng-container matColumnDef="#">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element"> {{element.idProducto}} </td>
+  </ng-container>
+
+  Codigo Column 
+  <ng-container matColumnDef="Codigo">
+    <th mat-header-cell *matHeaderCellDef> Codigo </th>
+    <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+  </ng-container>
+
+  Barrio Column 
+  <ng-container matColumnDef="Barrio">
+    <th mat-header-cell *matHeaderCellDef> cliente </th>
+    <td mat-cell *matCellDef="let element"> {{element.barrio}} </td>
+  </ng-container>
+
+  Precio Column 
+  <ng-container matColumnDef="Precio">
+    <th mat-header-cell *matHeaderCellDef> Precio </th>
+    <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+  </ng-container>
+
+  Imagen Column 
+  <ng-container matColumnDef="Imagen">
+    <th mat-header-cell *matHeaderCellDef> Imagen </th>
+    <td mat-cell *matCellDef="let element"> {{element.Imagen}} </td>
+  </ng-container>
+
+  Estado Column 
+  <ng-container matColumnDef="Estado">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+  </ng-container>
+
+
+  Modificar Column 
+  <ng-container matColumnDef="Modificar">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element">  <button type="button" class="btn btn-danger" id="botonClose" (click)="editarProducto(element)"><mat-icon>edit</mat-icon></button></td>
+  </ng-container>
+
+  Eliminar Column 
+  <ng-container matColumnDef="Eliminar">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element">  <button type="button" class="btn btn-danger" id="botonDelete" (click)="eliminarProducto(element)"><mat-icon>delete_forever</mat-icon></button></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
 </table>
 <br>
-<br>
+<mat-card>
+  <mat-card-content id="card" >Crear nuevo producto <button type="button" class="btn btn-danger" id="botonCrearNuevo"><mat-icon  (click)="changeCreate()">add</mat-icon></button></mat-card-content>
+</mat-card>
+  </ng-container>
+
+
+
+
+
+  
+<ng-template #crearProducto>
+  <form [formGroup]="formProducto" class="example-form" (ngSubmit)="productoNuevo() ">
+    <mat-form-field class="example-full-width">
+      <mat-label>Codigo</mat-label>
+        <input type="text" matInput formControlName="codigo" [disabled]="stateCode">
+        <br>
+        <mat-error *ngIf="validar.hasError('required')">
+          Campo incompleto
+        </mat-error>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Barrio</mat-label>
+        <input type="text" matInput formControlName="barrio">
+        <br>
+      <mat-error *ngIf="validar.hasError('required')">
+        Campo incompleto
+    </mat-error>
+    </mat-form-field>
+   <br>
+   <br>
+   <mat-form-field class="example-full-width">
+    <mat-label>Precio</mat-label>
+    <input type="number" matInput formControlName="precio" min="0" [disabled]="statePrecio">
+    <br>
+    <mat-error *ngIf="validar.hasError('required')">
+    Campo incompleto
+    </mat-error>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field class="example-full-width">
+    <mat-label>Imagen</mat-label>
+    <input type="text" matInput formControlName="Imagen">
+    <br>
+    <mat-error *ngIf="validar.hasError('required')">
+    Campo incompleto
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <button class="btn btn-danger" id="botonCrear" (click)="cambiarProducto()">Aceptar </button> 
+  <button type="button" class="btn btn-danger" id="botonCancelar" (click)="changeCreate()">Cancelar</button>
+</form>
+  
+</ng-template>
+
+</body>

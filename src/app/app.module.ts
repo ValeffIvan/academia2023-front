@@ -21,6 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -48,7 +50,9 @@ import {MatSelectModule} from '@angular/material/select';
         MatTabsModule,
         MatIconModule,
         MatTableModule,
-        MatSelectModule
+        MatSelectModule,
+        MatCardModule,
+        MatInputModule
     ],
     providers: [],
     bootstrap: [AppComponent],
