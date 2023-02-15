@@ -16,7 +16,7 @@ export class FormProductosComponent implements OnInit {
     codigo: new FormControl<string>('', Validators.required),
     barrio: new FormControl<string>('', Validators.required),
     precio: new FormControl<number>(0,Validators.min(0)),
-    Imagen: new FormControl<string>('', Validators.required),
+    imagen: new FormControl<string>('', Validators.required),
   })
   validar = new FormControl('', [Validators.required]);
 
@@ -37,7 +37,7 @@ export class FormProductosComponent implements OnInit {
     this.formProducto.patchValue({
       codigo: data.codigo,
       precio: data.precio,
-      Imagen: data.Imagen,
+      imagen: data.imagen,
       barrio: data.barrio
   })}
 
@@ -52,6 +52,6 @@ export class FormProductosComponent implements OnInit {
   }
 
   changeCreate():void {
-    this.router.navigateByUrl("/listarProductosVendedor")
+    this.router.navigateByUrl("/listarProductos")
   }
 }

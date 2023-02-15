@@ -7,16 +7,16 @@ import { EditarProductoService } from 'src/app/services/editar-producto.service'
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
-  selector: 'app-listar-productos-vendedor',
-  templateUrl: './listar-productos-vendedor.component.html',
-  styleUrls: ['./listar-productos-vendedor.component.scss']
+  selector: 'app-listar-productos',
+  templateUrl: './listar-productos.component.html',
+  styleUrls: ['./listar-productos.component.scss']
 })
-export class ListarProductosVendedorComponent implements OnInit{
+export class ListarProductosComponent implements OnInit{
   
   estadoProducto:number | undefined;
   productoActualizado!: Producto;
   dataSource = new MatTableDataSource <Producto>();
-  displayedColumns: string[] = ['#','Codigo', 'Barrio', 'Precio', 'Imagen', 'Estado', 'Modificar', 'Eliminar'];
+  displayedColumns: string[] = ['#','Codigo', 'Barrio', 'Precio', 'imagen', 'Estado', 'Modificar', 'Eliminar'];
   create:boolean=false;
 
   
@@ -41,7 +41,7 @@ export class ListarProductosVendedorComponent implements OnInit{
   }
 
   changeCreate():void {
-    this.router.navigateByUrl("/cargarPoducto")
+    this.router.navigateByUrl("/cargarReserva")
   }
 
   editarProducto(element:Producto){

@@ -1,0 +1,36 @@
+<br>
+<br>
+<form [formGroup]="formReserva" class="example-form" (ngSubmit)="reservaNuevo() ">
+    <mat-form-field class="example-full-width">
+      <mat-label>Cliente</mat-label>
+        <input type="text" matInput formControlName="cliente">
+        <br>
+        <mat-error *ngIf="validar.hasError('required')">
+          Campo incompleto
+        </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Id Vendedor</mat-label>
+        <input type="text" matInput formControlName="IdVendedor">
+        <br>
+    
+    <mat-error *ngIf="validar.hasError('required')">
+        Campo incompleto
+      </mat-error>
+    </mat-form-field>
+   <br>
+   <mat-form-field appearance="fill">
+    <mat-label>Productos</mat-label>
+    <mat-select matInput formControlName="producto">
+      <mat-option *ngFor="let producto of productos; index as i" [value]="producto" >{{producto.codigo}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="validar.hasError('required')">
+        Campo incompleto
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <button class="btn btn-danger" id="botonCrear" (click)="cambiarReserva()">Aceptar </button> 
+  <button type="button" class="btn btn-danger" id="botonCancelar" (click)="changeCreate()">Cancelar</button>
+</form>
+  

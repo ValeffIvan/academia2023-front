@@ -3,7 +3,7 @@ export interface Producto {
     codigo: string;
     barrio: string;
     precio: number;
-    Imagen:string;
+    imagen:string;
     estado:number;
 }
   

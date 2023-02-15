@@ -8,11 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MensajeComponent } from './components/mensaje/mensaje.component';
-import { ListarProductosVendedorComponent } from './components/listar-productos-vendedor/listar-productos-vendedor.component';
+import { ListarProductosComponent } from './components/listar-productos/listar-productos.component';
 import { ComercialComponent } from './components/comercial/comercial.component';
-import { ListarReservasComercialComponent } from "./components/listar-reservas-comercial/listar-reservas-comercial.component";
+import { ListarReservasComponent } from "./components/listar-reservas/listar-reservas.component";
 import { ReporteReservasComponent } from './components/reporte-reservas/reporte-reservas.component';
 import { VendedorComponent } from './components/vendedor/vendedor.component';
 
@@ -24,6 +24,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { FormProductosComponent } from './components/form-productos/form-productos.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { FormReservasComponent } from './components/form-reservas/form-reservas.component';
 
 
 
@@ -34,12 +36,13 @@ import { FormProductosComponent } from './components/form-productos/form-product
         InicioComponent,
         PageNotFoundComponent,
         MensajeComponent,
-        ListarProductosVendedorComponent,
+        ListarProductosComponent,
         ComercialComponent,
-        ListarReservasComercialComponent,
+        ListarReservasComponent,
         ReporteReservasComponent,
         VendedorComponent,
-        FormProductosComponent
+        FormProductosComponent,
+        FormReservasComponent
     ],
     imports: [
         HttpClientModule,
@@ -54,7 +57,9 @@ import { FormProductosComponent } from './components/form-productos/form-product
         MatTableModule,
         MatSelectModule,
         MatCardModule,
-        MatInputModule
+        MatInputModule,
+        MatCheckboxModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent],
