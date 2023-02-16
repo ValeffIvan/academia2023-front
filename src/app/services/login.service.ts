@@ -5,56 +5,53 @@ import * as _ from 'lodash';
 import { map, Observable } from 'rxjs';
 import { LoginCredentials } from '../models/login-credentials';
 import { environment } from "src/environments/enviroment";
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
-  // Guardar datos - ATENCIÓN: no persisten
-  // esto es, si se reinicia la app, se pierde todo
+  
   registeredUsers: LoginCredentials[] = [];
-
-  baseUrl: string = environment.apiUrl;
-
-
+  
+  baseUrl: string = environment.apiUrl+'/Account';
+  
   constructor(private http:HttpClient, private router: Router ){} 
-
+  
   userExists(newAccount: LoginCredentials){
-    const found =  _.findIndex(this.registeredUsers, x => x.username === newAccount.username);
-    return found >= 0;
+    return this.http.post(this.baseUrl+"/Register",newAccount) != null;
   }
-
+  
   addUser(newAccount: LoginCredentials){
-    this.registeredUsers.push(newAccount);
+    this.http.post(this.baseUrl+"/Register",newAccount);
   }
+  
   checkIfLogged(){
     if (localStorage.getItem('login')) this.router.navigateByUrl("/inicio")
     else this.router.navigateByUrl("/login")
   }
-/*
-  login(credentials: LoginCredentials): boolean{
-    const found = _.findIndex(this.registeredUsers, x => x.username === credentials.username && x.password === credentials.password);
-    if (found >= 0) {
-      localStorage.setItem('login', 'ok');
-      return true;
-    };
-    return false;
-  }
-*/
-  login (credentials: LoginCredentials): Observable<any>{
-    return this.http
-    .post<LoginCredentials>(this.baseUrl+"/GetUsers",credentials)
-    .pipe(  
-      map((res:LoginCredentials)=> {
-        console.log('Res-> ',res)
-      })
-    );
-  }
+  
 
+  login(credentials: LoginCredentials): string{
+    let token:string ='';
+    this.http.post(this.baseUrl+'/login',credentials).subscribe(x=>{
+      console.log(x)
+      token=x.toString()
+    })
+    console.log(token)
+    if (token) {
+      const decoded: LoginCredentials = jwt_decode(token);
+      console.log(decoded)
+      localStorage.setItem('login', 'ok');
+      return decoded.role;
+    }
+    return 'null';
+  }
+  
   logout(){
     localStorage.removeItem('login');
     this.router.navigateByUrl("/login");
   }
 
+  
 }

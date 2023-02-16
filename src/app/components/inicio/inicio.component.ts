@@ -8,15 +8,15 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
-
+  
   @Input() rol: string | undefined;
-
+  
   constructor(private _loginService: LoginService){}
-
+  
   ngOnInit(){
     this._loginService.checkIfLogged();
   }
-
+  
   logout(){
     this._loginService.logout();
   }

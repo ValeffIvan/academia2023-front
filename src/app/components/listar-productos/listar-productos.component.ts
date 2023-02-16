@@ -18,37 +18,44 @@ export class ListarProductosComponent implements OnInit{
   dataSource = new MatTableDataSource <Producto>();
   displayedColumns: string[] = ['#','Codigo', 'Barrio', 'Precio', 'imagen', 'Estado', 'Modificar', 'Eliminar'];
   create:boolean=false;
-
   
-
+  
+  
   constructor (private service : ProductosService, private router: Router, private servicioEditarProducto : EditarProductoService){
     
   }
   ngOnInit(): void {
     this.listarProductos()
   }
-
+  
+  //Cargar la lista de productos
   listarProductos()
   {
     this.service.getProducto().subscribe((data:Producto[]) => {
-      this.dataSource.data = data; }
-    ) 
+      this.dataSource.data = data; 
+    }) 
   }
-
+  
+  //Elimninar un producto
   eliminarProducto(element:Producto){
     this.service.deleteProduct(element.idProducto);
     this.listarProductos();
   }
-
+  
+  //Cambiar a componente para cargar productos
   changeCreate():void {
-    this.router.navigateByUrl("/cargarReserva")
+    this.router.navigateByUrl("/cargarPoducto")
   }
-
+  
+  //Editar un producto
   editarProducto(element:Producto){
     this.router.navigateByUrl("/cargarPoducto");
     this.servicioEditarProducto.disparadorDeProducto.emit({
       data: element
     })
-  };
+  }
+  actualizar(){
+
+  }
 }
 

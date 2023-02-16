@@ -58,15 +58,12 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.failedLogin = false;
-
     const credentials: LoginCredentials = {
       username: this.loginForm.get('username')!.value.toLowerCase(), 
       password: this.loginForm.get('password')!.value,
       role: this.loginForm.get('role')!.value
     };
-
     const loginOk = this._loginService.login(credentials);
     loginOk ? this.router.navigateByUrl("/inicio") : this.failedLogin = true;
   }
-
 }

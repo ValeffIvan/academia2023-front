@@ -1,44 +1,47 @@
-<form [formGroup]="formProducto" class="example-form" (ngSubmit)="productoNuevo() ">
-    <mat-form-field class="example-full-width">
-      <mat-label>Codigo</mat-label>
+<body>
+  <div id="formulario">
+    <form [formGroup]="formProducto" class="example-form" (ngSubmit)="productoNuevo()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Codigo</mat-label>
         <input type="text" matInput formControlName="codigo">
         <br>
         <mat-error *ngIf="validar.hasError('required')">
           Campo incompleto
         </mat-error>
-    </mat-form-field>
-    <br>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Barrio</mat-label>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Barrio</mat-label>
         <input type="text" matInput formControlName="barrio">
         <br>
-      <mat-error *ngIf="validar.hasError('required')">
-        Campo incompleto
-    </mat-error>
-    </mat-form-field>
-   <br>
-   <br>
-   <mat-form-field class="example-full-width">
-    <mat-label>Precio</mat-label>
-    <input type="number" matInput formControlName="precio" min="0">
-    <br>
-    <mat-error *ngIf="validar.hasError('required')">
-    Campo incompleto
-    </mat-error>
-    </mat-form-field>
-    <br>
-    <br>
-    <mat-form-field class="example-full-width">
-    <mat-label>Imagen</mat-label>
-    <input type="text" matInput formControlName="imagen">
-    <br>
-    <mat-error *ngIf="validar.hasError('required')">
-    Campo incompleto
-    </mat-error>
-  </mat-form-field>
-  <br>
-  <button class="btn btn-danger" id="botonCrear" (click)="cambiarProducto()">Aceptar </button> 
-  <button type="button" class="btn btn-danger" id="botonCancelar" (click)="changeCreate()">Cancelar</button>
-</form>
+        <mat-error *ngIf="validar.hasError('required')">
+          Campo incompleto
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Precio</mat-label>
+        <input type="number" matInput formControlName="precio" min="0">
+        <br>
+        <mat-error *ngIf="validar.hasError('required')">
+          Campo incompleto
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Imagen</mat-label>
+        <input type="text" matInput formControlName="imagen">
+        <br>
+        <mat-error *ngIf="validar.hasError('required')">
+          Campo incompleto
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <button class="btn btn-danger" id="botonCrear" (click)="cambiarProducto()" [disabled]="!formProducto.valid"formProducto mat-raised-button>Aceptar </button> 
+      &nbsp;
+      &nbsp;
+      <button type="button" class="btn btn-danger" id="botonCancelar" (click)="changeCreate()" mat-raised-button>Cancelar</button>
+    </form>
+  </div>
   
+</body>

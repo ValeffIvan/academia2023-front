@@ -15,31 +15,45 @@ export class FormReservasComponent implements OnInit{
   
   formReserva= new FormGroup({
     cliente: new FormControl<string>('', Validators.required),
-    IdVendedor: new FormControl<string>('', Validators.required),
+    idVendedor: new FormControl<string>('', Validators.required),
     producto:  new FormControl<string>('', Validators.required),
   })
   validar = new FormControl('', [Validators.required]);
   productos: Producto[]=[]
-
+  productosAux: Producto[]=[]
+  
   constructor(private service : ReservasService, private serviceProducto : ProductosService, private router: Router){
-
+    
   }
   ngOnInit(): void {
     this.serviceProducto.getProducto().subscribe((data:Producto[]) => {
-      this.productos = data; }
-    ) 
+      this.productos = data; 
+    }) 
   }
-
+  /*
+  cargarProductos(){
+    for (let x in this.productosAux)
+    {
+      if (i.)
+    }
+    this.productosAux.forEach(element => {
+      if (element.estado===1){
+        this.productos.push(element)
+      }
+    });
+  };
+  */
   reservaNuevo(){
-
+    
   }
-
+  
   cambiarReserva(){
-    this.service.createReservas(<Reservas>this.formReserva.value)
+    this.service.crearReserva(<Reservas>this.formReserva.value)
+    this.router.navigateByUrl("/reservas")
   }
-
+  
   changeCreate(){
-    this.router.navigateByUrl("/listarReservas")
+    this.router.navigateByUrl("/reservas")
   }
-
+  
 }

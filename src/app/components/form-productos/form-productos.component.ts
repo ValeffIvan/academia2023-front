@@ -11,7 +11,7 @@ import { ProductosService } from 'src/app/services/productos.service';
   styleUrls: ['./form-productos.component.scss']
 })
 export class FormProductosComponent implements OnInit {
-
+  
   formProducto= new FormGroup({
     codigo: new FormControl<string>('', Validators.required),
     barrio: new FormControl<string>('', Validators.required),
@@ -19,19 +19,18 @@ export class FormProductosComponent implements OnInit {
     imagen: new FormControl<string>('', Validators.required),
   })
   validar = new FormControl('', [Validators.required]);
-
+  
   constructor (private service : ProductosService,  private router: Router, private servicioEditarProducto : EditarProductoService){
   }
   ngOnInit(): void {
-
-    this.servicioEditarProducto.disparadorDeProducto.subscribe(data =>
-      {
-        this.updateData(data.data);
-        this.formProducto.get('precio')?.disable();
-        this.formProducto.get('codigo')?.disable();
+    
+    this.servicioEditarProducto.disparadorDeProducto.subscribe(data =>{
+      this.updateData(data.data);
+      this.formProducto.get('precio')?.disable();
+      this.formProducto.get('codigo')?.disable();
     })
   }
-
+  
   updateData (data:Producto)
   {
     this.formProducto.patchValue({
@@ -39,19 +38,21 @@ export class FormProductosComponent implements OnInit {
       precio: data.precio,
       imagen: data.imagen,
       barrio: data.barrio
-  })}
-
+    })
+  }
+  
   productoNuevo(){
     console.warn(this.formProducto.value)
     this.service.createProducts(<Producto>this.formProducto.value)
     this.formProducto.reset();
   }
-
+  
   cambiarProducto(){
     this.service.updateProduct (<Producto>this.formProducto.value)
+    this.router.navigateByUrl("/productos")
   }
-
+  
   changeCreate():void {
-    this.router.navigateByUrl("/listarProductos")
+    this.router.navigateByUrl("/productos")
   }
 }

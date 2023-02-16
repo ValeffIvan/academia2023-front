@@ -9,17 +9,18 @@ import { Reservas } from '../models/reservas';
   providedIn: 'root'
 })
 export class ReservasService {
-
+  
   baseUrl:string = environment.apiUrl+'/Reserva'
-
+  
   constructor(private http:HttpClient) { }
-
+  
   getReservas(): Observable<Array<Reservas>> {
     return this.http.get<Reservas[]>(this.baseUrl+'/GetReservas')
   }
-
-  createReservas(Reserva: {idReservas: number, cliente: string, idVendedor: string, estado: number}){
-    this.http.post(this.baseUrl='/PostProducts',Reserva).subscribe((res)=>{
+  
+  crearReserva(Reserva:Reservas){
+    console.log(Reserva)
+    this.http.post(this.baseUrl+'/PostReserva',Reserva).subscribe((res)=>{
       console.log(res);
     })
   }
@@ -30,15 +31,15 @@ export class ReservasService {
       console.log(data);
     })
   }
-
+  
   deleteProduct(id :number)
   {
     this.http.delete(this.baseUrl+'/DeleteReserva'+id).subscribe(data=>{
       console.log(data);
     });
   }
-
-
+  
+  
   changeState(id: number, estado:number)
   {
     //despues del estado, el '' esta vacio para que funcione. Salta error porque el servidor no sabe que hacer 

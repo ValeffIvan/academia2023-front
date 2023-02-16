@@ -7,17 +7,20 @@
     padding: 5%;
 }
 
-#botonCrear{
-    padding: 5%;
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 5%;
+    width: 100vW;
+    
 }
 
-#botonCrearNuevo{
-    margin-left: 5%;
+#boton{
+    justify-content: center;
+    display: flex;
 }
 
-#card{
-    border-color: green ;
-    border: solid;
-    margin-right: 65%;
-    padding-top: -10%;
+#contenedorListaYBoton{
+    margin-top: 5%;
 }
