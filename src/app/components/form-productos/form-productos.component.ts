@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/productos';
 import { EditarProductoService } from 'src/app/services/editar-producto.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class FormProductosComponent implements OnInit {
   })
   validar = new FormControl('', [Validators.required]);
   
-  constructor (private service : ProductosService,  private router: Router, private servicioEditarProducto : EditarProductoService){
+  constructor (private _loginService: LoginService,private service : ProductosService,  private router: Router, private servicioEditarProducto : EditarProductoService){
   }
   ngOnInit(): void {
     
@@ -45,7 +46,7 @@ export class FormProductosComponent implements OnInit {
     console.warn(this.formProducto.value)
     this.service.createProducts(<Producto>this.formProducto.value)
     this.formProducto.reset();
-    this.router.navigateByUrl("/productos")
+    this.router.navigateByUrl("/inicio")
   }
   
   crearProducto(){
@@ -54,6 +55,9 @@ export class FormProductosComponent implements OnInit {
   }
   
   changeCreate():void {
-    this.router.navigateByUrl("/productos")
+    this.router.navigateByUrl("/inicio")
+  }
+  logout(){
+    this._loginService.logout();
   }
 }

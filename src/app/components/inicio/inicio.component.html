@@ -1,5 +1,7 @@
 <button id="logoutBtn" (click)="logout()">Cerrar sesión</button>
-<div > 
+<div *ngIf="role==roles[2]">
     <app-comercial ></app-comercial>
-    <app-vendedor ></app-vendedor>
+</div>
+<div  *ngIf="role==roles[1]">  
+    <app-vendedor></app-vendedor> 
 </div>

@@ -9,12 +9,17 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class InicioComponent implements OnInit {
   
-  @Input() rol: string | undefined;
-  
+  role!:string;
+  roles:string[]=['"Administrador"','"Vendedor"','"Comercial"']
   constructor(private _loginService: LoginService){}
   
   ngOnInit(){
-    this._loginService.checkIfLogged();
+    if(this._loginService.checkIfLogged())
+    {
+      this.role=localStorage.getItem('role')!
+  
+    }
+
   }
   
   logout(){

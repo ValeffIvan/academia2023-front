@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/productos';
 import { Reservas } from 'src/app/models/reservas';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { ReservasService } from 'src/app/services/reservas.service';
 
@@ -23,7 +24,7 @@ export class FormReservasComponent implements OnInit{
   productosAux: Producto[]=[]
   productoAux!: Producto;
 
-  constructor(private service : ReservasService, private serviceProducto : ProductosService, private router: Router){
+  constructor(private service : ReservasService, private serviceProducto : ProductosService, private router: Router, private _loginService: LoginService){
     
   }
   ngOnInit(): void {
@@ -53,11 +54,14 @@ export class FormReservasComponent implements OnInit{
     }
     console.log(this.productoAux)
     this.service.crearReserva(reservaNueva,this.productoAux)
-    this.router.navigateByUrl("/reservas")
+    this.router.navigateByUrl("/inicio")
   }
   
   changeCreate(){
-    this.router.navigateByUrl("/reservas")
+    this.router.navigateByUrl("/inicio")
   }
-  
+ 
+  logout(){
+    this._loginService.logout();
+  }
 }

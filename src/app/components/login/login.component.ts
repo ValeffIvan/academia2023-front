@@ -47,23 +47,38 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password')!.value,
       role: this.loginForm.get('role')!.value
     };
+    let userExists:boolean =true
+    this._loginService.userExists(newAccount).subscribe((exists) => {
+      userExists = exists;
+      if (userExists){
+        this.usernameAlreadyExists = true;
+      }
+      else {
+        this._loginService.addUser(newAccount)
+        this.registrationOk = true;
+      }
+    });
 
-    const userExists = this._loginService.userExists(newAccount);
-    if (userExists) this.usernameAlreadyExists = true;
-    else {
-      this._loginService.addUser(newAccount)
-      this.registrationOk = true;
-    }
+    
   }
 
   login(){
-    this.failedLogin = false;
     const credentials: LoginCredentials = {
       username: this.loginForm.get('username')!.value.toLowerCase(), 
       password: this.loginForm.get('password')!.value,
       role: this.loginForm.get('role')!.value
     };
-    const loginOk = this._loginService.login(credentials);
-    //loginOk ? this.router.navigateByUrl("/login") : this.failedLogin = true;
+    this._loginService.login(credentials);
+    const role = localStorage.getItem('role')
+    if (role){
+      this.router.navigateByUrl("/inicio");
+      this.failedLogin = false;
+      }
+    else
+    {
+      this.router.navigateByUrl("/login");
+      this.failedLogin = true;
+    }
+    
   }
 }

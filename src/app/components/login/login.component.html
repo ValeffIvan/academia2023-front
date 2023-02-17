@@ -1,7 +1,7 @@
 <ng-container *ngIf="!notRegistered">
     <div id="login">
         <h1>Login</h1>
-        <form class="form" [formGroup]="loginForm">
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="inputContainer">
                 <label for="username">Usuario</label>
                 <input id="username" type="text" formControlName="username">
@@ -13,7 +13,7 @@
             <div class="notificationsContainer">
                 <span *ngIf="failedLogin" id="failedLogin">Las credenciales son incorrectas</span>
             </div>
-            <button id="loginBtn" [disabled]="!loginForm.valid" (click)="login()">Ingresar</button>
+            <button id="loginBtn" [disabled]="!loginForm.valid">Ingresar</button>
         </form> 
         
         <a class="createAccount" (click)="createAccount()">Crear una cuenta</a>
@@ -24,7 +24,7 @@
     <div id="register">
         <h1>Registrarse</h1>
         
-        <form class="form" [formGroup]="loginForm">
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="registerAccount()" >
             <div class="inputContainer">
                 <label for="username">Usuario</label>
                 <input id="username" type="text" formControlName="username" >
@@ -45,7 +45,7 @@
                 <span *ngIf="usernameAlreadyExists" id="alreadyExists">El usuario ya existe</span>
                 <span *ngIf="registrationOk" id="registrationOk">Usuario creado correctamente</span>
             </div>
-            <button id="registerBtn" [disabled]="!loginForm.valid" (click)="registerAccount()">Enviar</button>
+            <button id="registerBtn" [disabled]="!loginForm.valid">Enviar</button>
         </form>
         
         <a class="createAccount" (click)="createAccount()">Volver</a>
