@@ -45,21 +45,11 @@
           </td>
         </ng-container>
         
-        <!-- Aceptar Column  -->
-        <ng-container matColumnDef="aceptar">
-          <th mat-header-cell *matHeaderCellDef>  </th>
-          <td mat-cell *matCellDef="let element">  
-            <button type="button" class="btn btn-danger" id="botonAprobar" (click)="aprobarReserva(element.idReserva)" >
-              <mat-icon>done</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        
-        <!-- Negar Column  -->
+        <!-- Cancelar Column  -->
         <ng-container matColumnDef="negar">
           <th mat-header-cell *matHeaderCellDef>  </th>
           <td mat-cell *matCellDef="let element">  
-            <button type="button" class="btn btn-danger" id="botonNegar" (click)="rechazarReserva(element.idReserva)">
+            <button type="button" class="btn btn-danger" id="botonNegar" (click)="cancelarReserva(element.idReserva)">
               <mat-icon>close</mat-icon>
             </button>
           </td>
@@ -72,7 +62,7 @@
   </div>
   <section id="boton" cols="3">   
     <div class="example-button-row">     
-      <button mat-raised-button (click)="changeComponent()" id="btn-actualizar">Nuevo Producto</button> 
+      <button mat-raised-button (click)="changeComponent()" id="btn-actualizar">Nueva Reserva</button> 
       &nbsp;
       <button mat-raised-button (click)="actualizar()" >Actualizar lista</button> 
     </div> 

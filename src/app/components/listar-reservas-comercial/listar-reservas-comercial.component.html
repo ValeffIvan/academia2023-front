@@ -1,0 +1,79 @@
+<body>
+    <div id="filtro">
+      <mat-form-field appearance="fill" >
+        <mat-label>Cliente </mat-label>
+        <mat-select (selectionChange)="selectedValue($event)">
+          <mat-option *ngFor="let cliente of clientesList" [value]="cliente" >
+            {{cliente}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="container" >
+      <section class="example-container mat-elevation-z8" tabindex="0">
+        <!-- Tabla de productos -->
+        <table mat-table [dataSource]="reservasList"  class="mat-elevation-z8" >
+          # Column 
+          <ng-container matColumnDef="#">
+            <th mat-header-cell *matHeaderCellDef> # </th>
+            <td mat-cell *matCellDef="let element"> {{element.idReserva}} </td>
+          </ng-container>
+          
+          <!-- Cliente Column  -->
+          <ng-container matColumnDef="Cliente">
+            <th mat-header-cell *matHeaderCellDef> cliente </th>
+            <td mat-cell *matCellDef="let element"> {{element.cliente}} </td>
+          </ng-container>
+          
+          <!-- ID vendedor Column  -->
+          <ng-container matColumnDef="ID vendedor">
+            <th mat-header-cell *matHeaderCellDef> ID vendedor </th>
+            <td mat-cell *matCellDef="let element"> {{element.idVendedor}} </td>
+          </ng-container>
+          
+          <!-- Estado Column  -->
+          <ng-container matColumnDef="Estado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element">
+              <span [ngSwitch]="element.estado">
+                <p *ngSwitchCase="1">Ingresada</p>  
+                <p *ngSwitchCase="2">Solicitada</p>
+                <p *ngSwitchCase="3">Cancelada</p> 
+                <p *ngSwitchCase="4">Aprobada</p>   
+                <p *ngSwitchCase="5">Rechazada</p>        
+              </span>
+            </td>
+          </ng-container>
+          
+          <!-- Aceptar Column  -->
+          <ng-container matColumnDef="aceptar">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element">  
+              <button type="button" class="btn btn-danger" id="botonAprobar" (click)="aprobarReserva(element.idReserva)" >
+                <mat-icon>done</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          
+          <!-- Rechazar Column  -->
+          <ng-container matColumnDef="negar">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element">  
+              <button type="button" class="btn btn-danger" id="botonNegar" (click)="rechazarReserva(element.idReserva)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </section>
+    </div>
+    <section id="boton" cols="3">   
+      <div class="example-button-row">     
+        <button mat-raised-button (click)="actualizar()" >Actualizar lista</button> 
+      </div> 
+    </section>
+  </body>
+  

@@ -45,11 +45,12 @@ export class FormProductosComponent implements OnInit {
     console.warn(this.formProducto.value)
     this.service.createProducts(<Producto>this.formProducto.value)
     this.formProducto.reset();
+    this.router.navigateByUrl("/productos")
   }
   
-  cambiarProducto(){
+  crearProducto(){
     this.service.updateProduct (<Producto>this.formProducto.value)
-    this.router.navigateByUrl("/productos")
+    
   }
   
   changeCreate():void {

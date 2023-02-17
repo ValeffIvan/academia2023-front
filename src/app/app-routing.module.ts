@@ -5,6 +5,7 @@ import { FormProductosComponent } from './components/form-productos/form-product
 import { FormReservasComponent } from './components/form-reservas/form-reservas.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ListarProductosComponent } from './components/listar-productos/listar-productos.component';
+import { ListarReservasComercialComponent } from './components/listar-reservas-comercial/listar-reservas-comercial.component';
 import { ListarReservasComponent } from './components/listar-reservas/listar-reservas.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'productos', component: ListarProductosComponent },
   { path: 'reservas', component: ListarReservasComponent },
   { path: 'cargarReserva', component: FormReservasComponent },
+  { path: 'reservasComercial', component: ListarReservasComercialComponent },
   { path: '',   redirectTo: '/inicio', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];

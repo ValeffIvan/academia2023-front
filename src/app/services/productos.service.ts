@@ -18,8 +18,8 @@ export class ProductosService {
   }
   
   createProducts(Product: Producto) {
-    return this.http.post('https://localhost:7194/api/Producto/PostProducts',Product).subscribe(res => {
-    console.log(Product);})
+    return this.http.post(this.baseUrl+'/PostProducts',Product).subscribe(res => {
+    console.log(res);})
   }
   
   updateProduct (Product:Producto)

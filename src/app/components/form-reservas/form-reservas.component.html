@@ -1,6 +1,10 @@
 <body>
   <div id="formulario">
-    <form [formGroup]="formReserva" class="example-form" (ngSubmit)="reservaNuevo() ">
+    <form [formGroup]="formReserva" class="example-form">
+      <mat-card id="titulo">
+        <mat-card-content>Cargar nueva reserva</mat-card-content>
+      </mat-card>
+      <br>
       <mat-form-field class="example-full-width">
         <mat-label>Cliente</mat-label>
         <input type="text" matInput formControlName="cliente">
@@ -21,15 +25,15 @@
       <br>
       <mat-form-field appearance="fill">
         <mat-label>Productos</mat-label>
-        <mat-select matInput formControlName="producto">
-          <mat-option *ngFor="let producto of productos; index as i" [value]="producto" >{{producto.codigo}}</mat-option>
+        <mat-select matInput formControlName="producto" (selectionChange)="onProductoSeleccionado($event)">
+          <mat-option *ngFor="let producto of productosAux; index as i" [value]="producto" >{{producto.codigo}}</mat-option>
         </mat-select>
         <mat-error *ngIf="validar.hasError('required')">
           Campo incompleto
         </mat-error>
       </mat-form-field>
       <br>
-      <button id="botonCrear" (click)="cambiarReserva()" mat-raised-button [disabled]="!formReserva.valid">Aceptar </button> 
+      <button id="botonCrear" (click)="crearReserva()" mat-raised-button [disabled]="!formReserva.valid">Aceptar </button> 
       &nbsp;
       &nbsp;
       <button type="button"  id="botonCancelar" (click)="changeCreate()" mat-raised-button>Cancelar</button>

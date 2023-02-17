@@ -16,10 +16,10 @@ import { ComercialComponent } from './components/comercial/comercial.component';
 import { ListarReservasComponent } from "./components/listar-reservas/listar-reservas.component";
 import { ReporteReservasComponent } from './components/reporte-reservas/reporte-reservas.component';
 import { VendedorComponent } from './components/vendedor/vendedor.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FormReservasComponent } from './components/form-reservas/form-reservas.component';
 import { FormProductosComponent } from './components/form-productos/form-productos.component';
-import { MaterialModule } from './components/material/meterial-module';
+import { MaterialModule } from './material/meterial-module';
+import { ListarReservasComercialComponent } from './components/listar-reservas-comercial/listar-reservas-comercial.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +35,7 @@ import { MaterialModule } from './components/material/meterial-module';
         VendedorComponent,
         FormProductosComponent,
         FormReservasComponent,
-        SidebarComponent
+        ListarReservasComercialComponent,
     ],
     imports: [
         HttpClientModule,

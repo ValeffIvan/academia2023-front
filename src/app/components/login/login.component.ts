@@ -64,6 +64,6 @@ export class LoginComponent implements OnInit {
       role: this.loginForm.get('role')!.value
     };
     const loginOk = this._loginService.login(credentials);
-    loginOk ? this.router.navigateByUrl("/inicio") : this.failedLogin = true;
+    //loginOk ? this.router.navigateByUrl("/login") : this.failedLogin = true;
   }
 }

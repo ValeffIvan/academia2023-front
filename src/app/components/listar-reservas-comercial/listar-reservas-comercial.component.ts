@@ -6,15 +6,12 @@ import { Reservas } from 'src/app/models/reservas';
 import { Task } from 'src/app/models/reservas-filtro';
 import { ReservasService } from 'src/app/services/reservas.service';
 
-
-
 @Component({
-  selector: 'app-listar-reservas',
-  templateUrl: './listar-reservas.component.html',
-  styleUrls: ['./listar-reservas.component.scss']
+  selector: 'app-listar-reservas-comercial',
+  templateUrl: './listar-reservas-comercial.component.html',
+  styleUrls: ['./listar-reservas-comercial.component.scss']
 })
-export class ListarReservasComponent {
-  
+export class ListarReservasComercialComponent {
   //Filtro
   task: Task = {
     name: 'Estado',
@@ -31,7 +28,7 @@ export class ListarReservasComponent {
   
   //Data para la lista
   reservasList: Reservas[]=[];
-  displayedColumns: string[] = ['#', 'Cliente', 'ID vendedor', 'Estado', 'negar'];
+  displayedColumns: string[] = ['#', 'Cliente', 'ID vendedor', 'Estado', 'aceptar', 'negar'];
   reservasListAux:Reservas[]=[];
   clientesList:string []= [];
   @ViewChild(MatTable) table!: MatTable<any>;
@@ -76,7 +73,18 @@ export class ListarReservasComponent {
     this.updateTable();
   }
   
-  //Actualizar la lista
+  //Funciones para aceptar y rechazar reservas
+  aprobarReserva(id:number){
+    this.service.changeState(id,4)
+    this.updateTable();
+  }
+  
+  rechazarReserva(id:number){
+    this.service.changeState(id,5)
+    this.updateTable();
+  }
+  
+    //Actualizar la lista
   updateTable():void{
     this.table.renderRows();
   }
@@ -86,17 +94,6 @@ export class ListarReservasComponent {
   {
     if (this.reservasListAux.length==0) {this.reservasListAux = this.reservasList;}
     this.reservasList=[];
-  }
-  
-  //Funciones para cancelar reservas  
-  cancelarReserva(id:number){
-    this.service.changeState(id,3)
-    this.updateTable();
-  }
-  
-  //Cambiar al componente para cargar una reserva
-  changeComponent(){
-    this.router.navigateByUrl("/cargarReserva")
   }
   actualizar(){
     

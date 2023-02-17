@@ -18,9 +18,10 @@ export class ReservasService {
     return this.http.get<Reservas[]>(this.baseUrl+'/GetReservas')
   }
   
-  crearReserva(Reserva:Reservas){
-    console.log(Reserva)
-    this.http.post(this.baseUrl+'/PostReserva',Reserva).subscribe((res)=>{
+  crearReserva(Reserva:Reservas, producto:Producto){
+    const body = {Reserva: Reserva, producto: producto};
+    console.log(body)
+    this.http.post(this.baseUrl+'/ReservaNueva',body).subscribe((res)=>{
       console.log(res);
     })
   }
