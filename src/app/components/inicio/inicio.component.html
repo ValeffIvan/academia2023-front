@@ -6,10 +6,7 @@
     <div  *ngSwitchCase="roles[1]">  
         <app-vendedor></app-vendedor> 
     </div>
-    <div id="vendedor">
-        <mat-tab-group id="comercialYvendedor">
-            <mat-tab label="Comercial" > <app-comercial ></app-comercial> </mat-tab>
-            <mat-tab label="Vendedor" > <app-vendedor></app-vendedor> </mat-tab>
-        </mat-tab-group>
+    <div id="administrador" *ngSwitchCase="roles[0]">
+        <app-administrador></app-administrador>
     </div>
 </div>

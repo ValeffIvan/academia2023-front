@@ -3,21 +3,19 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Reservas } from 'src/app/models/reservas';
-import { Task } from 'src/app/models/reservas-filtro';
 import { ReservasService } from 'src/app/services/reservas.service';
 
-@Component({
-  selector: 'app-listar-reservas-comercial',
-  templateUrl: './listar-reservas-comercial.component.html',
-  styleUrls: ['./listar-reservas-comercial.component.scss']
-})
-export class ListarReservasComercialComponent {
 
-  allComplete: boolean = false;
+@Component({
+  selector: 'app-listar-reservas-administrador',
+  templateUrl: './listar-reservas-administrador.component.html',
+  styleUrls: ['./listar-reservas-administrador.component.scss']
+})
+export class ListarReservasAdministradorComponent {
   
   //Data para la lista
   reservasList: Reservas[]=[];
-  displayedColumns: string[] = ['#', 'Cliente', 'ID vendedor', 'Estado', 'aceptar', 'negar'];
+  displayedColumns: string[] = ['#', 'Cliente', 'ID vendedor', 'aceptar', 'solicitar', 'rechazar', 'negar'];
   reservasListAux:Reservas[]=[];
   clientesList:string []= [];
   @ViewChild(MatTable) table!: MatTable<any>;
@@ -25,21 +23,12 @@ export class ListarReservasComercialComponent {
   constructor (private service : ReservasService, private router: Router){
     
   }
-  ngOnInit(){
-    this.getReserva();
-  }
-  
-  //Obtener reservas
-  getReserva():void{
+  ngOnInit(){    
     this.service.getReservas().subscribe( (data:Reservas[]) => {
-      this.reservasList = data;this.filtrarReservas(); this.cargarClientes();
-
+      this.reservasList = data;this.cargarClientes();
     })
-  }  
-  
-  filtrarReservas(){
-    this.reservasList = this.reservasList.filter(reserva => reserva.estado==1 || reserva.estado==2)
   }
+  
 
   //Cargar filtro de cliente
   cargarClientes():void {
@@ -63,21 +52,9 @@ export class ListarReservasComercialComponent {
         this.reservasList = this.reservasListAux
       }
     }
-    this.updateTable();
   }
   
-  //Funciones para aceptar y rechazar reservas
-  aprobarReserva(id:number){
-    this.service.changeState(id,4)
-    this.updateTable();
-  }
-  
-  rechazarReserva(id:number){
-    this.service.changeState(id,5)
-    this.updateTable();
-  }
-  
-    //Actualizar la lista
+  //Actualizar la lista
   updateTable():void{
     this.table.renderRows();
   }
@@ -88,6 +65,19 @@ export class ListarReservasComercialComponent {
     if (this.reservasListAux.length==0) {this.reservasListAux = this.reservasList;}
     this.reservasList=[];
   }
+  
+  //Funciones para cancelar reservas  
+  cambiarEstado(id:number,estado:number){
+    this.service.changeState(id,estado)
+    this.updateTable();
+  }
+  
+  //Cambiar al componente para cargar una reserva
+  changeComponent(){
+    this.router.navigateByUrl("/cargarReserva")
+  }
+
+  //Boton actualizar
   actualizar(){
     this.updateTable()
   }

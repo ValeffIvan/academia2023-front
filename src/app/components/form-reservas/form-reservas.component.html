@@ -1,7 +1,7 @@
 <body>
 <button id="logoutBtn" (click)="logout()">Cerrar sesión</button>
   <div id="formulario">
-    <form [formGroup]="formReserva" class="example-form">
+    <form [formGroup]="formReserva" class="example-form" (ngSubmit)="crearReserva()">
       <mat-card id="titulo">
         <mat-card-content>Cargar nueva reserva</mat-card-content>
       </mat-card>
@@ -34,7 +34,7 @@
         </mat-error>
       </mat-form-field>
       <br>
-      <button id="botonCrear" (click)="crearReserva()" mat-raised-button [disabled]="!formReserva.valid">Aceptar </button> 
+      <button id="botonCrear" type="submit" [disabled]="!formReserva.valid">Aceptar </button> 
       &nbsp;
       &nbsp;
       <button type="button"  id="botonCancelar" (click)="changeCreate()" mat-raised-button>Cancelar</button>

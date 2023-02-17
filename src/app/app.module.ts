@@ -20,6 +20,8 @@ import { FormReservasComponent } from './components/form-reservas/form-reservas.
 import { FormProductosComponent } from './components/form-productos/form-productos.component';
 import { MaterialModule } from './material/meterial-module';
 import { ListarReservasComercialComponent } from './components/listar-reservas-comercial/listar-reservas-comercial.component';
+import { ListarReservasAdministradorComponent } from './components/listar-reservas-administrador/listar-reservas-administrador.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +38,9 @@ import { ListarReservasComercialComponent } from './components/listar-reservas-c
         FormProductosComponent,
         FormReservasComponent,
         ListarReservasComercialComponent,
+        ListarReservasAdministradorComponent,
+        AdministradorComponent
+
     ],
     imports: [
         HttpClientModule,

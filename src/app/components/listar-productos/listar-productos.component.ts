@@ -54,8 +54,15 @@ export class ListarProductosComponent implements OnInit{
       data: element
     })
   }
+  
+  //Actualizar la lista
+  updateTable():void{
+    this.listarProductos()
+  }
+  
+  //Boton actualizar
   actualizar(){
-
+    this.updateTable()
   }
 }
 

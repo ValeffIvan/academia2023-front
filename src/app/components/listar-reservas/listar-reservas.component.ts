@@ -14,24 +14,10 @@ import { ReservasService } from 'src/app/services/reservas.service';
   styleUrls: ['./listar-reservas.component.scss']
 })
 export class ListarReservasComponent {
-  
-  //Filtro
-  task: Task = {
-    name: 'Estado',
-    completed: false,
-    color: 'primary',
-    subtasks: [
-      {name: 'Aprobada', completed: false, color: 'primary'},
-      {name: 'Solicitada', completed: false, color: 'primary'},
-      {name: 'Rechazada', completed: false, color: 'primary'},
-      {name: 'Aprobada', completed: false, color: 'primary'}
-    ],
-  };
-  allComplete: boolean = false;
-  
+    
   //Data para la lista
   reservasList: Reservas[]=[];
-  displayedColumns: string[] = ['#', 'Cliente', 'ID vendedor', 'Estado', 'negar'];
+  displayedColumns: string[] = ['#', 'Cliente', 'ID vendedor', 'Estado', 'solicitar', 'negar'];
   reservasListAux:Reservas[]=[];
   clientesList:string []= [];
   @ViewChild(MatTable) table!: MatTable<any>;
@@ -39,18 +25,16 @@ export class ListarReservasComponent {
   constructor (private service : ReservasService, private router: Router){
     
   }
-  ngOnInit(){
-    this.getReserva();
+  ngOnInit(){    
+    this.service.getReservas().subscribe( (data:Reservas[]) => {
+      this.reservasList = data; this.filtrarReservas();this.cargarClientes();
+    })
   }
   
-  //Obtener reservas
-  getReserva():void{
-    this.service.getReservas().subscribe( (data:Reservas[]) => {
-      this.reservasList = data; this.cargarClientes();
-      console.log(data);
-    })
-  }  
-  
+  filtrarReservas(){
+    this.reservasList = this.reservasList.filter(reserva => reserva.estado==1)
+  }
+
   //Cargar filtro de cliente
   cargarClientes():void {
     for (let x of this.reservasList)
@@ -73,7 +57,6 @@ export class ListarReservasComponent {
         this.reservasList = this.reservasListAux
       }
     }
-    this.updateTable();
   }
   
   //Actualizar la lista
@@ -93,12 +76,20 @@ export class ListarReservasComponent {
     this.service.changeState(id,3)
     this.updateTable();
   }
-  
+
+  solicitarReserva(id:number){
+    this.service.changeState(id,2)
+    this.updateTable();
+  }
+
   //Cambiar al componente para cargar una reserva
   changeComponent(){
     this.router.navigateByUrl("/cargarReserva")
   }
+
+
+  //Boton actualizar
   actualizar(){
-    
+    this.updateTable()
   }
 }
