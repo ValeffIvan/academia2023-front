@@ -66,6 +66,10 @@ export class FormProductosComponent implements OnInit {
     this.formProducto.reset();
     this.router.navigateByUrl("/inicio")
     }
+    localStorage.removeItem('barrio');
+    localStorage.removeItem('codigo');
+    localStorage.removeItem('precio');
+    localStorage.removeItem('imagen');
   }
   
   crearProducto(){
