@@ -23,6 +23,7 @@ import { ListarReservasComercialComponent } from './components/listar-reservas-c
 import { ListarReservasAdministradorComponent } from './components/listar-reservas-administrador/listar-reservas-administrador.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -39,7 +40,7 @@ import { AdministradorComponent } from './components/administrador/administrador
         FormReservasComponent,
         ListarReservasComercialComponent,
         ListarReservasAdministradorComponent,
-        AdministradorComponent
+        AdministradorComponent,
 
     ],
     imports: [

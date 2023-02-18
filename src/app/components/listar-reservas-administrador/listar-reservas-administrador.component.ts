@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { ReservasService } from 'src/app/services/reservas.service';
   templateUrl: './listar-reservas-administrador.component.html',
   styleUrls: ['./listar-reservas-administrador.component.scss']
 })
-export class ListarReservasAdministradorComponent {
+export class ListarReservasAdministradorComponent implements OnInit {
   
   //Data para la lista
   reservasList: Reservas[]=[];
