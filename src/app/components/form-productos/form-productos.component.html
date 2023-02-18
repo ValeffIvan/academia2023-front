@@ -8,7 +8,7 @@
       <br>
       <mat-form-field class="example-full-width">
         <mat-label>Codigo</mat-label>
-        <input type="text" matInput formControlName="codigo">
+        <input type="text" matInput formControlName="codigo" [readonly]="false">
         <br>
         <mat-error *ngIf="validar.hasError('required')">
           Campo incompleto
@@ -26,7 +26,7 @@
       <br>
       <mat-form-field class="example-full-width">
         <mat-label>Precio</mat-label>
-        <input type="number" matInput formControlName="precio" min="0">
+        <input type="number" matInput formControlName="precio" min="0" [readonly]="false">
         <br>
         <mat-error *ngIf="validar.hasError('required')">
           Campo incompleto

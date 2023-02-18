@@ -48,6 +48,10 @@ export class ListarProductosComponent implements OnInit{
   
   //Editar un producto
   editarProducto(element:Producto){
+    localStorage.setItem('imagen',element.imagen)
+    localStorage.setItem('barrio',element.barrio)
+    localStorage.setItem('precio',element.precio.toString())
+    localStorage.setItem('codigo',element.codigo)
     this.router.navigateByUrl("/cargarPoducto");
     this.servicioEditarProducto.disparadorDeProducto.emit({
       data: element

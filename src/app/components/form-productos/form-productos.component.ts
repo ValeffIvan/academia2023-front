@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, TitleStrategy } from '@angular/router';
 import { Producto } from 'src/app/models/productos';
 import { EditarProductoService } from 'src/app/services/editar-producto.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -24,7 +24,18 @@ export class FormProductosComponent implements OnInit {
   constructor (private _loginService: LoginService,private service : ProductosService,  private router: Router, private servicioEditarProducto : EditarProductoService){
   }
   ngOnInit(): void {
-    
+    const precioStorage=localStorage.getItem('precio')!
+    if (localStorage.getItem('imagen') || localStorage.getItem('barrio'))
+    {
+      this.formProducto.setValue({
+        barrio: localStorage.getItem('barrio'),
+        codigo: localStorage.getItem('codigo'),
+        precio: parseInt(precioStorage),
+        imagen: localStorage.getItem('imagen'),
+     })
+     this.formProducto.get('codigo')?.disable()
+     this.formProducto.get('precio')?.disable()
+    }
     this.servicioEditarProducto.disparadorDeProducto.subscribe(data =>{
       this.updateData(data.data);
       this.formProducto.get('precio')?.disable();
@@ -43,10 +54,18 @@ export class FormProductosComponent implements OnInit {
   }
   
   productoNuevo(){
-    console.warn(this.formProducto.value)
+    if (this.formProducto.get('precio')?.disable())
+    {
+      this.service.updateProduct(<Producto>this.formProducto.value)
+      this.formProducto.reset();
+      this.router.navigateByUrl("/inicio")
+    }
+    else{
+      console.warn(this.formProducto.value)
     this.service.createProducts(<Producto>this.formProducto.value)
     this.formProducto.reset();
     this.router.navigateByUrl("/inicio")
+    }
   }
   
   crearProducto(){
