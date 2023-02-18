@@ -25,6 +25,7 @@ export class LoginService {
   }
   
   addUser(newAccount: LoginCredentials){
+    console.log(newAccount)
     this.http.post(this.baseUrl+"/Register",newAccount).subscribe(resp=>{
       console.log(resp)
     });

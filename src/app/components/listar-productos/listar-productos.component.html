@@ -58,7 +58,7 @@
           
           Modificar Column 
           <ng-container matColumnDef="Modificar">
-            <th mat-header-cell *matHeaderCellDef>  </th>
+            <th mat-header-cell *matHeaderCellDef> Editar </th>
             <td mat-cell *matCellDef="let element">  
               <button type="button" class="btn btn-danger" id="botonClose" (click)="editarProducto(element)">
                 <mat-icon>edit</mat-icon>
@@ -68,7 +68,7 @@
           
           Eliminar Column 
           <ng-container matColumnDef="Eliminar">
-            <th mat-header-cell *matHeaderCellDef>  </th>
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
             <td mat-cell *matCellDef="let element"> 
               <button type="button" class="btn btn-danger" id="botonDelete" (click)="eliminarProducto(element)">
                 <mat-icon>delete_forever</mat-icon>
